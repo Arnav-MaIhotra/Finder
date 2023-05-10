@@ -62,7 +62,7 @@ def realtyHop(fname, lname):
     None
 
 
-def get_info(fname, lname, lage, hage):
+def get_info(fname, lname, lage, hage): #This and phone are the two functions you worry about
   
   real = realtyHop(fname, lname)
   rad = radaris(fname, lname)
