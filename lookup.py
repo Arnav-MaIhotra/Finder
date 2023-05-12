@@ -26,11 +26,11 @@ def radaris(fname, lname):
         rad_info[i + ' quick'] = j.text.replace('\n\n', '\n')
     except:
       None
+    media_links = []
     try:
       media_cont = isoup.find('div', class_='mentions-container js-mentions-pos')
   
       socials = media_cont.find_all('div', class_='social')
-      media_links = []
   
       for j in socials:
         links = j.find_all('a')
@@ -62,15 +62,18 @@ def realtyHop(fname, lname):
     None
 
 
-def get_info(fname, lname, lage, hage): #This and phone are the two functions you worry about
+def get_info(fname, lname, lage, hage, state):
   
   real = realtyHop(fname, lname)
   rad = radaris(fname, lname)
   print(real)
   for i in rad:
     for j in range(lage, hage):
-      if 'Age:\n{}'.format(j) in rad[i]:
-        return rad[i].replace('[]', '') + real
+      if 'Age:\n{}'.format(j) in rad[i] and state in rad[i]:
+        if real:
+          return rad[i].replace('[]', '') + real
+        else:
+          return rad[i].replace("[]", "")
         break
 
 
